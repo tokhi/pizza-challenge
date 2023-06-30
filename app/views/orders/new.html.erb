@@ -1,0 +1,16 @@
+<h1>New order</h1>
+<%= turbo_frame_tag "new_order", target: "_top" do %>
+
+  <div id="items">
+    <%= render @order.items %>
+  </div>
+
+  <%= turbo_frame_tag "new_item", src: new_order_item_path(@order), target: "_top" %>
+  <%= render "form", order: @order %>
+
+<% end %>
+
+<div>
+  <%= link_to "Back to orders", orders_path %>
+</div>
+

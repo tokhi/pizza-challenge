@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= turbo_frame_tag "order" do %>
+
+  <div>
+    <%= link_to "Edit this order", edit_order_path(@order) %> |
+    <%= link_to "Back to orders", orders_path, "data-turbo-frame": "_top" %>
+
+  </div>
+<% end %>
+
+<div id="items">
+  <%= render @order.items %>
+</div>
+
+<%= turbo_frame_tag "new_item", src: new_order_item_path(@order), target: "_top" %>
