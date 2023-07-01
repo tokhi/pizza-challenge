@@ -12,10 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_627_132_731) do
-  # Could not dump table "items" because of following StandardError
-  #   Unknown type 'uuid' for column 'order_id'
-
+ActiveRecord::Schema[7.0].define(version: 20_230_627_131_639) do
   create_table 'orders', id: :string, force: :cascade do |t|
     t.string 'state'
     t.text 'promotion_codes'
@@ -25,6 +22,4 @@ ActiveRecord::Schema[7.0].define(version: 20_230_627_132_731) do
     t.datetime 'updated_at', null: false
     t.index ['id'], name: 'index_orders_on_id', unique: true
   end
-
-  add_foreign_key 'items', 'orders'
 end
