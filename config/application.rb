@@ -15,6 +15,7 @@ module PizzaChallenge
     config.before_configuration do
       config.items = YAML.load_file("#{Rails.root}/config/items.yml")
     end
+    config.active_record.schema_format = :sql
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
