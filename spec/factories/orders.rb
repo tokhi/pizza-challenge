@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :order do
     id { SecureRandom.uuid }
-    state { 'open' }
+    state { 'OPEN' }
   end
 end

@@ -2,10 +2,14 @@
 
 FactoryBot.define do
   factory :item do
-    name { 'MyString' }
-    size { 'MyString' }
-    add { 'MyText' }
-    remove { 'MyText' }
-    order { nil }
+    name { 'Salami' }
+    size { 'Small' }
+    add { [] }
+    remove { [] }
+
+    trait :with_olives_and_cheese do
+      add { %w[Olives Cheese] }
+      remove { %w[Onions] }
+    end
   end
 end

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
-  before_action :set_order
-
   def index
     @items = Item.all
   end
@@ -14,6 +12,7 @@ class ItemsController < ApplicationController
     @pizzas = item_config['pizzas']
     @ingredients = item_config['ingredients']
     @size_multipliers = item_config['size_multipliers']
+    @order = set_order
     @item = @order.items.new
   end
 
@@ -22,6 +21,7 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
+    @order = set_order
     @item = @order.items.create!(item_params)
 
     respond_to do |format|
