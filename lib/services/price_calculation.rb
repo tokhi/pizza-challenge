@@ -17,9 +17,9 @@ module Services
     end
 
     def calculate_item_price(name, size, ingredients)
-      base_price = config['pizzas'][name]
-      multiplier = config['size_multipliers'][size]
-      ingredient_price = ingredients.sum { |ingredient| config['ingredients'][ingredient] || 0 }
+      base_price = items_config['pizzas'][name]
+      multiplier = items_config['size_multipliers'][size]
+      ingredient_price = ingredients.sum { |ingredient| items_config['ingredients'][ingredient] || 0 }
 
       (base_price * multiplier) + ingredient_price
     end
@@ -40,7 +40,7 @@ module Services
       items_hash = items.group_by { |item| [item.name, item.size] }
 
       promotion_codes.each do |promotion_code|
-        promotion = config['promotions'][promotion_code]
+        promotion = items_config['promotions'][promotion_code]
         next unless promotion
 
         matching_items = items_hash.select do |key, _|
@@ -74,25 +74,25 @@ module Services
     end
 
     def promotion_applicable?(items, promotion_code)
-      promotion = config['promotions'][promotion_code]
+      promotion = items_config['promotions'][promotion_code]
       return false unless promotion
 
       items.any? { |item| item.name == promotion['target'] || item.size == promotion['target_size'] }
     end
 
     def discount_applicable?
-      @order.discount_code.present?
+      @order.discount_code.present? and items_config['discounts'][@order.discount_code]
     end
 
     def apply_discount(total_price)
-      discount_percent = config['discounts'][@order.discount_code]['deduction_in_percent']
+      discount_percent = items_config['discounts'][@order.discount_code]['deduction_in_percent']
       return total_price unless discount_percent.present?
 
       (total_price * discount_percent) / 100
     end
 
-    def config
-      @config ||= Rails.application.config.items
+    def items_config
+      @items_config ||= Rails.application.config.items
     end
   end
 end
