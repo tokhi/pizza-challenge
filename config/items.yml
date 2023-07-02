@@ -16,6 +16,11 @@ promotions:
     target_size: Small
     from: 2
     to: 1
+  5FOR3:
+    target: Margherita
+    target_size: Small
+    from: 5
+    to: 3
 discounts:
   SAVE5:
     deduction_in_percent: 5

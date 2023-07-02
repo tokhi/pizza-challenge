@@ -35,7 +35,7 @@ module Services
 
     def apply_promotions(items)
       promotion_codes = @order.promotion_codes.compact_blank
-      total_discount = 0
+      total_promotion_discount = 0
 
       # group items by name and size
       items_hash = items.group_by { |item| [item.name, item.size] }
@@ -47,19 +47,18 @@ module Services
         matching_items = items_hash.select do |key, _|
           item_name, item_size = key
           # make sure the group match promotion target and target_size
-          item_name == promotion['target'] || item_size == promotion['target_size']
+          item_name == promotion['target'] and item_size == promotion['target_size']
         end
-
         next if matching_items.empty?
 
-        total_discount += calculate_promotion_discount(matching_items, promotion)
+        total_promotion_discount += calculate_promotion_discount(matching_items, promotion)
       end
 
-      total_discount
+      total_promotion_discount
     end
 
     def calculate_promotion_discount(matching_items, promotion)
-      total_discount = 0
+      total_promotion_discount = 0
 
       matching_items.each do |_, matching_items_array|
         quantity = matching_items_array.size
@@ -67,13 +66,13 @@ module Services
 
         matching_item = matching_items_array.first
         # calculate the promotion discount
-        discount = (quantity / promotion['from']) * promotion['to'] * calculate_item_price(
-          matching_item.name, matching_item.size, []
-        )
-        total_discount += discount
+        matching_item_price = calculate_item_price(matching_item.name, matching_item.size, [])
+        matching_items_total_price = quantity * matching_item_price
+        amount_to_pay = (quantity / promotion['from']) * promotion['to'] * matching_item_price
+        total_promotion_discount = (matching_items_total_price - amount_to_pay)
       end
 
-      total_discount
+      total_promotion_discount
     end
 
     def promotion_applicable?(items, promotion_code)
