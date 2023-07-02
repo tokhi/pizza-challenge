@@ -37,14 +37,16 @@ module Services
       promotion_codes = @order.promotion_codes.compact_blank
       total_discount = 0
 
+      # group items by name and size
       items_hash = items.group_by { |item| [item.name, item.size] }
 
       promotion_codes.each do |promotion_code|
         promotion = items_config['promotions'][promotion_code]
-        next unless promotion
+        next unless promotion # promotion is not matching
 
         matching_items = items_hash.select do |key, _|
           item_name, item_size = key
+          # make sure the group match promotion target and target_size
           item_name == promotion['target'] || item_size == promotion['target_size']
         end
 
@@ -64,6 +66,7 @@ module Services
         next unless quantity >= promotion['from']
 
         matching_item = matching_items_array.first
+        # calculate the promotion discount
         discount = (quantity / promotion['from']) * promotion['to'] * calculate_item_price(
           matching_item.name, matching_item.size, []
         )

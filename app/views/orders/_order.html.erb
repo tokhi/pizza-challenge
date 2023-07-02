@@ -9,7 +9,7 @@
                         <li>created: <%= order.created_at.strftime("%a, %e %b %Y %H:%M")%></li>
                         <li>Promotion Codes: <%= list(order.promotion_codes)%></li>
                         <li>Discount Codes : <%= order.discount_code.presence || '-' %></li>
-                        <li style="margin-top: 25px;">Total Price: <%= order.total_price %></li>
+                        <li style="margin-top: 25px;">Total Price: <%= number_to_currency(order.total_price, unit: "€", format: "%n %u") %></li>
                         <li style="margin-top: 25px;"><%= render "complete_order", order: order %></li>
                     <ul>
                 </div>

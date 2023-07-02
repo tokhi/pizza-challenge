@@ -1,27 +1,18 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
-  def index
-    @items = Item.all
-  end
-
-  def show; end
-
   def new
     item_config = Rails.application.config.items
     @pizzas = item_config['pizzas']
     @ingredients = item_config['ingredients']
     @size_multipliers = item_config['size_multipliers']
-    @order = set_order
+    @order = find_order
     @item = @order.items.new
   end
 
-  # GET /items/1/edit
-  def edit; end
-
   # POST /items or /items.json
   def create
-    @order = set_order
+    @order = find_order
     @item = @order.items.create!(item_params)
 
     respond_to do |format|
@@ -31,8 +22,8 @@ class ItemsController < ApplicationController
 
   private
 
-  def set_order
-    @order = Order.find params[:order_id]
+  def find_order
+    Order.find params[:order_id]
   end
 
   # Only allow a list of trusted parameters through.

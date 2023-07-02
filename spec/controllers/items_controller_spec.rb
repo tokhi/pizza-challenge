@@ -7,10 +7,10 @@ RSpec.describe ItemsController, type: :controller do
   let(:item) { FactoryBot.create(:item, order:) }
 
   before do
-    allow(controller).to receive(:set_order).and_return(order)
+    allow(controller).to receive(:find_order).and_return(order)
   end
 
-  describe ' #new' do
+  describe '#new' do
     it 'instance variables for the items_config' do
       get :new,  params: { order_id: order.id }
       item_config = Rails.application.config.items
@@ -26,7 +26,7 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
-  describe ' #create' do
+  describe '#create' do
     let(:valid_params) { { name: 'Margherita', size: 'Medium' } }
     context 'with valid parameters' do
       it 'creates a new item' do

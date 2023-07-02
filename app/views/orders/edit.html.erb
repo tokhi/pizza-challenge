@@ -8,12 +8,6 @@
   
   <%= render "form", order: @order %>
 <% end %>
-<br>
-
-<div>
-  <%= link_to "Show this order", @order %> |
-  <%= link_to "Back to orders", orders_path %>
-</div>
 
 <script>
 document.addEventListener("turbo:frame-missing", (event) => {

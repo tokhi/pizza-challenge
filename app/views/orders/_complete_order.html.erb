@@ -1,6 +1,6 @@
 <%= form_with(model: order, local: true) do |form| %>
-    <%= form.hidden_field :state, value: 'complete' %>
+    <%= form.hidden_field :state, value: 'COMPLETE' %>
     <div>
-    <%= form.submit 'complete' %>
+    <%= form.submit 'Complete' %>
     </div>
 <% end %>

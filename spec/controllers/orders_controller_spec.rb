@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
-  describe ' #index' do
+  describe '#index' do
     it 'assigns the orders with open state' do
       open_orders = FactoryBot.create_list(:order, 2, state: 'OPEN')
       FactoryBot.create(:order, state: 'COMPLETE')
@@ -14,7 +14,7 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  describe ' #show' do
+  describe '#show' do
     let(:order) { FactoryBot.create(:order) }
 
     it 'assigns the requested order' do
@@ -23,7 +23,7 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  describe ' #new' do
+  describe '#new' do
     it 'creates a new order' do
       get :new
       order = assigns(:order)
@@ -39,7 +39,7 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  describe ' #create' do
+  describe '#create' do
     let(:order_params) { { state: 'OPEN' } }
 
     context 'with valid params' do
@@ -71,7 +71,7 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  describe ' #destroy' do
+  describe '#destroy' do
     let!(:order) { FactoryBot.create(:order) }
 
     it 'destroys the requested order' do
