@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+# This service get the items and calclutate them as below steps:
+# Step 1:
+# Calcluate the total price of the given items and add them with the extra ingredients if there is any
+# Step 2:
+# Checks if there are any applicable promotions if yes then it apply the promotions
+# by finding the promotion discount amound and then deduct them from step1 total price of the items.
+# Step 3
+# It checks if there is any discount percentage if yes, calculate the discount amound
+# and then deduct them from the total price from step 1 and step 2
+
 module Services
   class PriceCalculation
     def initialize(order)
@@ -16,6 +26,7 @@ module Services
       total_price
     end
 
+    # calculate the base price of the items and the ingredients
     def calculate_item_price(name, size, ingredients)
       base_price = items_config['pizzas'][name]
       multiplier = items_config['size_multipliers'][size]
