@@ -38,6 +38,7 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
+    - 'app/controllers/application_controller.rb'
     - 'app/controllers/items_controller.rb'
     - 'app/controllers/orders_controller.rb'
     - 'app/helpers/application_helper.rb'

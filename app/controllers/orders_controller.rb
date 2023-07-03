@@ -20,8 +20,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
-    @promotions = Rails.application.config.items['promotions']
-    @discounts = Rails.application.config.items['discounts']
+    @promotions = item_config['promotions']
+    @discounts = item_config['discounts']
   end
 
   # POST /orders or /orders.json

@@ -2,7 +2,6 @@
 
 class ItemsController < ApplicationController
   def new
-    item_config = Rails.application.config.items
     @pizzas = item_config['pizzas']
     @ingredients = item_config['ingredients']
     @size_multipliers = item_config['size_multipliers']
