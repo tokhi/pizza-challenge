@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-# This service get the items and calclutate them as below steps:
+# This service get the order with its items and ingredients and calclutate them as below steps:
 # Step 1:
 # Calcluate the total price of the given items and add them with the extra ingredients if there is any
 # Step 2:
-# Checks if there are any applicable promotions if yes then it apply the promotions
+# Checks if there are any applicable promotions if yes then it applies the promotions
 # by finding the promotion discount amound and then deduct them from step1 total price of the items.
-# Step 3
-# It checks if there is any discount percentage if yes, calculate the discount amound
-# and then deduct them from the total price from step 1 and step 2
+# Step 3:
+# It checks if there is any discount percentage if yes, calculate the discount amount
+# and then deducts the discount from the total price from step 1 and step 2
 
 module Services
   class PriceCalculation
