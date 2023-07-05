@@ -17,3 +17,9 @@ To start the server:
 rails s
 
 ```
+
+Seed the db:
+
+```
+rails db:seed
+```
