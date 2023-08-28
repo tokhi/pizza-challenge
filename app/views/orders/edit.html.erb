@@ -1,0 +1,18 @@
+<h1>Editing order</h1>
+<%= turbo_frame_tag "order" do %>
+  <div id="items">
+    <%= render @order.items %>
+  </div>
+
+  <%= turbo_frame_tag "new_item", src: new_order_item_path(@order), target: "_top" %>
+  
+  <%= render "form", order: @order %>
+<% end %>
+
+<script>
+document.addEventListener("turbo:frame-missing", (event) => {
+  const { detail: { response, visit } } = event;
+  event.preventDefault();
+  visit(response.url);
+});
+</script>

@@ -1,0 +1,28 @@
+<div id="<%= dom_id order %>">
+    <hr>
+    <table >
+        <tr>
+            <td>
+                <div>
+                    <ul style = "list-style: none;">
+                        <li> ID: <%= order.id %></li>
+                        <li>created: <%= order.created_at.strftime("%a, %e %b %Y %H:%M")%></li>
+                        <li>Promotion Codes: <%= list(order.promotion_codes)%></li>
+                        <li>Discount Codes : <%= order.discount_code.presence || '-' %></li>
+                        <li style="margin-top: 25px;">Total Price: <%= number_to_currency(order.total_price, unit: "€", format: "%n %u") %></li>
+                        <li style="margin-top: 25px;"><%= render "complete_order", order: order %></li>
+                    <ul>
+                </div>
+            </td>
+            <td>
+                <div id="items" style="margin-left: 25px;" >
+                    items:
+                    <ul >
+                    <li> <%= render order.items %> </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+       
+    </table>
+</div>

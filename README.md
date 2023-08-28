@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple Pizza order app, which has the ability to add items to an order, set discounts and promotion codes and render the total price in currency.
 
-Things you may want to cover:
+```
+rails db:setup
+```
 
-* Ruby version
+To run the specs:
 
-* System dependencies
+```
+rspec
+```
+To start the server:
 
-* Configuration
+```
+rails s
 
-* Database creation
+```
 
-* Database initialization
+Seed the db:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+rails db:seed
+```

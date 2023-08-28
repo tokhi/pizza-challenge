@@ -1,0 +1,11 @@
+<div id="<%= dom_id item %>">
+    <%= item.name %> (<%= item.size%>)
+    <ul>
+      <% if item.add.compact_blank.present?%>
+        <li> Add: <%= list(item.add) %> </li>
+      <% end %>
+      <% if item.remove.compact_blank.present? %>
+        <li> Remove: <%= list(item.remove) %> </li>
+      <% end %>
+     </ul>
+</div>
